@@ -1,7 +1,8 @@
-﻿using CleanArchitecture.OCP.Domain.Entities;
+﻿using CleanArchitecture.OCP.Domain.DTOs;
+using CleanArchitecture.OCP.Domain.Entities;
 
 namespace CleanArchitecture.OCP.Domain.DomainServices;
 public interface IFinancialReportGenerator
 {
-    FinancialReport Execute(IEnumerable<FinancialTransaction> financialTransactions);
+    FinancialReportData Execute(IEnumerable<FinancialTransaction> financialTransactions);
 }
