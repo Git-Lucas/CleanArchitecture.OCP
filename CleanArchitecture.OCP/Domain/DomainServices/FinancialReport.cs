@@ -1,8 +1,8 @@
 ﻿using CleanArchitecture.OCP.Domain.Entities;
 
 namespace CleanArchitecture.OCP.Domain.DomainServices;
-public class FinancialReport(IEnumerable<FinancialTransaction> financialTransactions, int total)
+public class FinancialReport(IEnumerable<FinancialTransaction> financialTransactions, decimal total)
 {
     public IEnumerable<FinancialTransaction> FinancialTransactions { get; } = financialTransactions;
-    public int Total { get; } = total;
+    public decimal Total { get; } = total;
 }
