@@ -3,5 +3,5 @@
 namespace CleanArchitecture.OCP.Domain.Repositories;
 public interface IFinancialTransactionRepository
 {
-    Task<IEnumerable<FinancialTransaction>> GetByPeriodAsync(DateOnly init, DateOnly final);
+    Task<IEnumerable<FinancialTransaction>> GetByPeriodAsync(DateOnly startPeriod, DateOnly endPeriod);
 }

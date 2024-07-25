@@ -1,13 +1,14 @@
-﻿using CleanArchitecture.OCP.Domain.Entities;
+﻿using CleanArchitecture.OCP.Domain.DTOs;
+using CleanArchitecture.OCP.Domain.Entities;
 
 namespace CleanArchitecture.OCP.Domain.DomainServices;
 public class FinancialReportGeneratorLaw202401 : IFinancialReportGenerator
 {
-    public FinancialReport Execute(IEnumerable<FinancialTransaction> financialTransactions)
+    public FinancialReportData Execute(IEnumerable<FinancialTransaction> financialTransactions)
     {
         decimal total = CalculateTotal(financialTransactions);
 
-        return new FinancialReport(financialTransactions, total);
+        return new FinancialReportData(financialTransactions, total);
     }
 
     private decimal CalculateTotal(IEnumerable<FinancialTransaction> financialTransactions)
