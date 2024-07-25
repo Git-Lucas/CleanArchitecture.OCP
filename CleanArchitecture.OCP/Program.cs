@@ -2,8 +2,8 @@
 using CleanArchitecture.OCP.Domain.DomainServices;
 using CleanArchitecture.OCP.Domain.DTOs;
 using CleanArchitecture.OCP.Domain.Repositories;
+using CleanArchitecture.OCP.Domain.Utils;
 using CleanArchitecture.OCP.Infrastructure.Data.Repositories;
-using System.Text.Json;
 
 //DependencyInjection
 IFinancialTransactionRepository repository = new FinancialTransactionRepositoryMemory();
@@ -22,14 +22,4 @@ GetFinancialReportRequest request = new(
 GetFinancialReportWeb getFinancialReportWeb = new(repository, generatorDomainService);
 GetFinancialReportWebResponse webResponse = await getFinancialReportWeb.ExecuteAsync(request);
 
-Console.WriteLine(Serialize(webResponse));
-
-static string Serialize<T>(T value)
-{
-    JsonSerializerOptions options = new()
-    {
-        WriteIndented = true
-    };
-
-    return JsonSerializer.Serialize(value, options);
-}
+Console.WriteLine(Serializer.Serialize(webResponse));
