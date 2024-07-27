@@ -4,6 +4,8 @@ using CleanArchitecture.OCP.Domain.Entities;
 namespace CleanArchitecture.OCP.Domain.DomainServices;
 public class FinancialReportGeneratorLaw202401 : IFinancialReportGenerator
 {
+    private readonly decimal _federalTaxPercentage = 0.03m;
+
     public FinancialReportData Execute(IEnumerable<FinancialTransaction> financialTransactions)
     {
         decimal total = CalculateTotal(financialTransactions);
@@ -22,6 +24,9 @@ public class FinancialReportGeneratorLaw202401 : IFinancialReportGenerator
             .Select(x => x.Value)
             .Sum();
 
-        return credits - debits;
+        decimal liquid = credits - debits;
+        decimal federalTaxDiscounted = liquid * (1 - _federalTaxPercentage);
+
+        return federalTaxDiscounted;
     }
 }

@@ -10,6 +10,7 @@ public static class Serializer
 
     public static string Serialize<T>(T value)
     {
-        return JsonSerializer.Serialize(value, Options);
+        string result = $"{typeof(T).Name}: {Environment.NewLine}";
+        return result + JsonSerializer.Serialize(value, Options);
     }
 }
