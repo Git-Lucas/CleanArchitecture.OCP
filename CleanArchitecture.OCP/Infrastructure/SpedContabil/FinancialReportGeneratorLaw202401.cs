@@ -1,7 +1,7 @@
-﻿using CleanArchitecture.OCP.Domain.DTOs;
-using CleanArchitecture.OCP.Domain.Entities;
+﻿using CleanArchitecture.OCP.Domain.FinancialTransactions.Entities;
+using CleanArchitecture.OCP.Domain.FinancialTransactions.SpedContabil;
 
-namespace CleanArchitecture.OCP.Domain.DomainServices;
+namespace CleanArchitecture.OCP.Infrastructure.SpedContabil;
 public class FinancialReportGeneratorLaw202401 : IFinancialReportGenerator
 {
     private readonly decimal _federalTaxPercentage = 0.03m;

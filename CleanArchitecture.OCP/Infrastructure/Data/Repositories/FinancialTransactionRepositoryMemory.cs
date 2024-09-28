@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.OCP.Domain.Entities;
-using CleanArchitecture.OCP.Domain.Repositories;
+﻿using CleanArchitecture.OCP.Domain.FinancialTransactions.Entities;
+using CleanArchitecture.OCP.Domain.FinancialTransactions.Repositories;
 
 namespace CleanArchitecture.OCP.Infrastructure.Data.Repositories;
 public class FinancialTransactionRepositoryMemory : IFinancialTransactionRepository
@@ -21,7 +21,7 @@ public class FinancialTransactionRepositoryMemory : IFinancialTransactionReposit
     public async Task<IEnumerable<FinancialTransaction>> GetByPeriodAsync(DateOnly startPeriod, DateOnly endPeriod)
     {
         return _financialTransactions
-            .Where(x => DateOnly.FromDateTime(x.ProcessedIn) >= startPeriod 
+            .Where(x => DateOnly.FromDateTime(x.ProcessedIn) >= startPeriod
                                  && DateOnly.FromDateTime(x.ProcessedIn) <= endPeriod);
     }
 }

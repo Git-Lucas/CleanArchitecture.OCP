@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.OCP.Domain.Entities;
+﻿namespace CleanArchitecture.OCP.Domain.FinancialTransactions.Entities;
 public class FinancialTransaction
 {
     public int Id { get; private set; }
