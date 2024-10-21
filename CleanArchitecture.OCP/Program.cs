@@ -1,13 +1,12 @@
-﻿using CleanArchitecture.OCP.Application.UseCases;
+﻿using CleanArchitecture.OCP;
+using CleanArchitecture.OCP.Application.UseCases;
 using CleanArchitecture.OCP.Domain.FinancialTransactions.Repositories;
 using CleanArchitecture.OCP.Domain.FinancialTransactions.SpedContabil;
-using CleanArchitecture.OCP.Domain.Utils;
-using CleanArchitecture.OCP.Infrastructure.Data.Repositories;
-using CleanArchitecture.OCP.Infrastructure.SpedContabil;
+using CleanArchitecture.OCP.Infrastructure;
 
 //DependencyInjection
-IFinancialTransactionRepository repository = new FinancialTransactionRepositoryMemory();
-IFinancialReportGenerator generatorSpedContabil = new FinancialReportGeneratorLaw202401();
+IFinancialTransactionRepository repository = ContainerDependencyInjection.FinancialTransactionRepository;
+IFinancialReportGenerator generatorSpedContabil = ContainerDependencyInjection.FinancialReportGenerator;
 
 GetFinancialReportWeb webUseCase = new(repository, generatorSpedContabil);
 GetFinancialReportRequest genericRequest = new(

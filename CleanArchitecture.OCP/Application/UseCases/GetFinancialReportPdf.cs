@@ -1,6 +1,6 @@
-﻿using CleanArchitecture.OCP.Domain.FinancialTransactions.Entities;
-using CleanArchitecture.OCP.Domain.FinancialTransactions.Repositories;
+﻿using CleanArchitecture.OCP.Domain.FinancialTransactions.Repositories;
 using CleanArchitecture.OCP.Domain.FinancialTransactions.SpedContabil;
+using CleanArchitecture.OCP.Domain.FinancialTransactions.SpedContabil.DomainServices;
 using static CleanArchitecture.OCP.Domain.FinancialTransactions.SpedContabil.DomainServices.GenerateFinancialReport;
 
 namespace CleanArchitecture.OCP.Application.UseCases;
@@ -10,12 +10,13 @@ public class GetFinancialReportPdf(
 {
     private readonly IFinancialTransactionRepository _financialTransactionRepository = financialTransactionRepository;
     private readonly IFinancialReportGenerator _financialReportGenerator = financialReportGenerator;
+    private readonly GenerateFinancialReport _generateFinancialReport = new();
 
     public async Task<GetFinancialReportPdfResponse> ExecuteAsync(GetFinancialReportPdfRequest request)
     {
-        IEnumerable<FinancialTransaction> financialTransactions = await _financialTransactionRepository.GetByPeriodAsync(request.StartPeriod, request.EndPeriod);
-        
-        FinancialReportData financialReportData = _financialReportGenerator.Execute(financialTransactions);
+        FinancialReportData financialReportData = await _generateFinancialReport.ExecuteAsync(_financialTransactionRepository,
+                                                                                              _financialReportGenerator,
+                                                                                              new(request.StartPeriod, request.EndPeriod));
 
         return new GetFinancialReportPdfResponse(request.ReportTitle, financialReportData);
     }
