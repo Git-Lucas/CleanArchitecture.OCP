@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace CleanArchitecture.OCP.Domain.Utils;
+namespace CleanArchitecture.OCP;
 public static class Serializer
 {
     private static JsonSerializerOptions Options => new()
